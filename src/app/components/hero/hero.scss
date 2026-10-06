@@ -1,0 +1,152 @@
+// src/app/components/hero/hero.scss
+@use '../../../styles/mixins' as *;
+
+:host {
+  display: block;
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-xl);
+  padding: var(--space-2xl) var(--space-md);
+
+  // A partir de tablet (768px+), layout horizontal alinhado à esquerda
+  @include tablet {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    padding: var(--space-3xl) 0;
+  }
+
+  // ─── AVATAR COM GLOW RING ───────────────────────────
+  &__avatar-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+
+    @include tablet {
+      width: 170px;
+      height: 170px;
+    }
+
+    // Anel externo com gradiente neon Azul Tech
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--accent), transparent 70%);
+      z-index: 0;
+      opacity: 0.8;
+      box-shadow: var(--shadow-glow);
+    }
+  }
+
+  &__avatar {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    background-color: var(--bg-secondary);
+    border: 3px solid var(--bg-primary);
+  }
+
+  // ─── DADOS E INFORMAÇÕES ─────────────────────────────
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  &__badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+
+    @include tablet {
+      justify-content: flex-start;
+    }
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: rgba(0, 210, 255, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(0, 210, 255, 0.25);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+
+    &-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #10b981; // Verde disponível
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+      animation: pulse 2s infinite;
+    }
+  }
+
+  &__nome {
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-top: var(--space-xs);
+  }
+
+  &__bio {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 580px;
+    margin-top: var(--space-xs);
+  }
+}
+
+// ─── ANIMAÇÕES ─────────────────────────────────────────
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+}

@@ -1,0 +1,140 @@
+// src/app/components/contato/contato.scss
+@use '../../../styles/mixins' as *;
+
+:host {
+  display: block;
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.contato {
+  padding: var(--space-xl) 0 var(--space-3xl);
+
+  &__card {
+    @include glass(16px, 0.06);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-xl);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 210, 255, 0.05);
+
+    @include tablet {
+      padding: var(--space-3xl) var(--space-2xl);
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  &__tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  &__titulo {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  &__subtitulo {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+  }
+
+  // ─── BOTÃO COPIAR E-MAIL ─────────────────────────────
+  &__btn-copiar {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-full);
+    background: var(--accent);
+    color: var(--bg-primary);
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px var(--accent-glow);
+    transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+
+    &:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--accent-glow);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &--sucesso {
+      background: #10b981; // Verde sucesso
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+
+      &:hover {
+        background: #059669;
+      }
+    }
+  }
+
+  // ─── LINK GITHUB ─────────────────────────────────────
+  &__link-github {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0, 210, 255, 0.08);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__footer {
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+    padding-top: var(--space-lg);
+    margin-top: var(--space-md);
+
+    p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+  }
+}

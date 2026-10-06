@@ -1,0 +1,48 @@
+// src/styles/_mixins.scss
+// Biblioteca de Mixins Reutilizáveis
+
+// ─── GLASSMORPHISM ─────────────────────────────────────
+// Efeito de "vidro fosco" sobre o fundo escuro.
+// backdrop-filter desfoca os elementos que estão ATRÁS deste card.
+@mixin glass($blur: 12px, $opacity: 0.05) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+// ─── RESPONSIVIDADE (MOBILE-FIRST) ─────────────────────
+// No padrão mobile-first, estilizamos primeiro para telas pequenas.
+// Os mixins abaixo "expandem" as regras para telas maiores.
+@mixin tablet {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}
+
+// ─── TEXT TRUNCATE ─────────────────────────────────────
+// Adiciona reticências (...) quando o texto excede o tamanho
+@mixin text-truncate($lines: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @if $lines == 1 {
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+  }
+}

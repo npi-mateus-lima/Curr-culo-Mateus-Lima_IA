@@ -1,0 +1,36 @@
+<section class="experiencia">
+  <div class="experiencia__header">
+    <div class="experiencia__tag">TRAJETÓRIA</div>
+    <h2 class="experiencia__titulo">Experiência & Formação</h2>
+    <p class="experiencia__subtitulo">
+      Minha jornada prática de evolução técnica, da base sólida em Delphi e banco de dados até a Web moderna.
+    </p>
+  </div>
+
+  <div class="timeline">
+    @for (item of experiencias(); track item.id) {
+      <article class="timeline__item">
+        <!-- Marcador e nó da linha do tempo -->
+        <div class="timeline__node"></div>
+
+        <div class="timeline__card">
+          <div class="timeline__card-header">
+            <span class="timeline__periodo">{{ item.periodo }}</span>
+            <span class="timeline__instituicao">{{ item.instituicao }}</span>
+          </div>
+
+          <h3 class="timeline__cargo">{{ item.cargo }}</h3>
+          <p class="timeline__descricao">{{ item.descricao }}</p>
+
+          @if (item.destaques) {
+            <div class="timeline__tags">
+              @for (tag of item.destaques; track tag) {
+                <span class="timeline__tag">{{ tag }}</span>
+              }
+            </div>
+          }
+        </div>
+      </article>
+    }
+  </div>
+</section>

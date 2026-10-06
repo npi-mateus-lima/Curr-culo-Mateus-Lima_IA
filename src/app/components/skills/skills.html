@@ -1,0 +1,45 @@
+<section class="skills">
+  <div class="skills__header">
+    <div class="skills__tag">COMPETÊNCIAS</div>
+    <h2 class="skills__titulo">Habilidades Técnicas</h2>
+    <p class="skills__subtitulo">
+      Tecnologias e ferramentas que aplico no dia a dia para construir soluções confiáveis.
+    </p>
+  </div>
+
+  <!-- Botões de Filtro Reativo -->
+  <div class="skills__filtros" role="toolbar" aria-label="Filtro de habilidades por categoria">
+    @for (cat of categorias(); track cat) {
+      <button
+        type="button"
+        class="skills__filtro-btn"
+        [class.skills__filtro-btn--ativo]="filtroAtivo() === cat"
+        (click)="setFiltro(cat)">
+        {{ cat }}
+      </button>
+    }
+  </div>
+
+  <!-- Grid de Cards de Habilidades -->
+  <div class="skills__grid">
+    @for (skill of skillsFiltradas(); track skill.nome) {
+      <article class="skills__card">
+        <div class="skills__card-header">
+          <span class="skills__card-categoria">{{ skill.categoria }}</span>
+          <span
+            class="skills__card-nivel"
+            [class.skills__card-nivel--domino]="skill.nivel === 'Domino'"
+            [class.skills__card-nivel--diaadia]="skill.nivel === 'Uso no dia a dia'"
+            [class.skills__card-nivel--praticando]="skill.nivel === 'Praticando'">
+            {{ skill.nivel }}
+          </span>
+        </div>
+
+        <h3 class="skills__card-nome">{{ skill.nome }}</h3>
+        <p class="skills__card-desc">{{ skill.descricao }}</p>
+      </article>
+    } @empty {
+      <p class="skills__vazio">Nenhuma habilidade encontrada para esta categoria.</p>
+    }
+  </div>
+</section>

@@ -1,0 +1,177 @@
+// src/app/components/skills/skills.scss
+@use '../../../styles/mixins' as *;
+
+:host {
+  display: block;
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--space-xl) 0;
+
+  // ─── CABEÇALHO DA SEÇÃO ───────────────────────────────
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  &__tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  &__titulo {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  &__subtitulo {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 600px;
+  }
+
+  // ─── BOTÕES DE FILTRO ────────────────────────────────
+  &__filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  &__filtro-btn {
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0, 210, 255, 0.08);
+      transform: translateY(-1px);
+    }
+
+    // Estado ativo selecionado
+    &--ativo {
+      background: var(--accent);
+      color: var(--bg-primary);
+      border-color: var(--accent);
+      font-weight: 700;
+      box-shadow: 0 0 16px var(--accent-glow);
+
+      &:hover {
+        background: var(--accent-hover);
+        color: var(--bg-primary);
+      }
+    }
+  }
+
+  // ─── GRID DE CARDS ───────────────────────────────────
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  // ─── CARD INDIVIDUAL ─────────────────────────────────
+  &__card {
+    @include glass(12px, 0.05);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    transition: transform var(--transition-normal),
+                border-color var(--transition-normal),
+                box-shadow var(--transition-normal);
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 210, 255, 0.35);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
+    }
+
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xs);
+    }
+
+    &-categoria {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    &-nivel {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-full);
+      border: 1px solid transparent;
+
+      &--domino {
+        background: rgba(0, 210, 255, 0.12);
+        color: var(--accent);
+        border-color: rgba(0, 210, 255, 0.3);
+      }
+
+      &--diaadia {
+        background: rgba(16, 185, 129, 0.12);
+        color: #10b981;
+        border-color: rgba(16, 185, 129, 0.3);
+      }
+
+      &--praticando {
+        background: rgba(167, 139, 250, 0.12);
+        color: #a78bfa;
+        border-color: rgba(167, 139, 250, 0.3);
+      }
+    }
+
+    &-nome {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    &-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+  }
+
+  &__vazio {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--space-2xl);
+    color: var(--text-muted);
+    font-style: italic;
+  }
+}

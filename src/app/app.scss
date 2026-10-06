@@ -1,0 +1,22 @@
+// src/app/app.scss
+@use '../styles/mixins' as *;
+
+.app-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+
+  @include tablet {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+}
+
+// ─── ANIMAÇÕES ESCALONADAS (EFEITO CASCATA) ─────────────
+app-hero        { animation-delay: 0s; }
+app-skills      { animation-delay: 0.15s; }
+app-experiencia { animation-delay: 0.3s; }
+app-contato     { animation-delay: 0.45s; }

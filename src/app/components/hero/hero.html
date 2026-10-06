@@ -1,0 +1,22 @@
+<section class="hero">
+  <div class="hero__avatar-wrapper">
+    <img
+      class="hero__avatar"
+      [src]="avatarUrl()"
+      [alt]="'Avatar de ' + nome()"
+    />
+  </div>
+
+  <div class="hero__info">
+    <div class="hero__badge-container">
+      <span class="hero__badge">{{ papel() }}</span>
+      <span class="hero__status">
+        <span class="hero__status-dot"></span>
+        Disponível para Oportunidades
+      </span>
+    </div>
+
+    <h1 class="hero__nome">{{ nome() }}</h1>
+    <p class="hero__bio">{{ bio() }}</p>
+  </div>
+</section>

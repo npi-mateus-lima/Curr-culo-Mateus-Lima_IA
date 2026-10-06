@@ -1,1 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+// src/styles.scss
+// ─── 1. IMPORT DE MIXINS (Sempre no topo absoluto) ─────
+@use 'styles/mixins' as *;
+
+// ─── 2. IMPORT DE FONTES (Google Fonts) ─────────────────
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+// ─── 3. DESIGN TOKENS (Variáveis Globais em :root) ──────
+:root {
+  // Cores de Fundo (Dark Mode Profundo)
+  --bg-primary: #0a0e17;           // Fundo da página principal
+  --bg-secondary: #111827;         // Fundo de seções/cards
+  --bg-card: rgba(17, 24, 39, 0.75); // Card com leve transparência
+  --bg-card-hover: rgba(31, 41, 55, 0.85);
+
+  // Bordas e Divisores
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color-focus: rgba(0, 210, 255, 0.5);
+
+  // Cores de Texto (Alto Contraste)
+  --text-primary: #f9fafb;         // Branco brilhante para títulos e dados principais
+  --text-secondary: #9ca3af;       // Cinza médio para descrições e parágrafos
+  --text-muted: #6b7280;           // Cinza escuro para detalhes sutis
+
+  // Cores de Destaque (Seu Azul Tech)
+  --accent: #00d2ff;               // Azul elétrico / ciano principal
+  --accent-hover: #38bdf8;         // Azul mais claro no hover
+  --accent-dark: #0284c7;          // Azul mais fechado
+  --accent-glow: rgba(0, 210, 255, 0.35); // Brilho neon para sombras de destaque
+
+  // Tipografia
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  // Escala de Espaçamento Harmônica (múltiplos de 4px / 8px)
+  --space-xs: 0.25rem;   // 4px
+  --space-sm: 0.5rem;    // 8px
+  --space-md: 1rem;      // 16px
+  --space-lg: 1.5rem;    // 24px
+  --space-xl: 2rem;      // 32px
+  --space-2xl: 3rem;     // 48px
+  --space-3xl: 4rem;     // 64px
+
+  // Raios de Borda (Curvatura dos cantos)
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px; // Para botões pílula e avatares circulares
+
+  // Transições de Animação
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Sombras e Efeitos
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 25px var(--accent-glow);
+}
+
+// ─── 4. RESET CSS UNIVERSAL ────────────────────────────
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// ─── 5. ESTILOS BASE DO DOCUMENTO ──────────────────────
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Estilos de seleção de texto com o seu Azul Tech
+::selection {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+}
+
+// ─── ACESSIBILIDADE: REDUÇÃO DE MOVIMENTO ──────────────
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
